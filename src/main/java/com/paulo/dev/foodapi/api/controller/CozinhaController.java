@@ -1,7 +1,5 @@
 package com.paulo.dev.foodapi.api.controller;
 
-import com.paulo.dev.foodapi.domain.exception.EntidadeEmUsoException;
-import com.paulo.dev.foodapi.domain.exception.EntidadeNaoEncontradaException;
 import com.paulo.dev.foodapi.domain.model.Cozinha;
 import com.paulo.dev.foodapi.domain.service.CozinhaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -31,12 +29,12 @@ public class CozinhaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cozinha cadastrar(@RequestBody Cozinha cozinha) {
+    public Cozinha cadastrar(@RequestBody @Valid Cozinha cozinha) {
         return cozinhaService.cadastrar(cozinha);
     }
 
     @PutMapping("/{id}")
-    public Cozinha atualizar(@PathVariable Long id, @RequestBody Cozinha cozinha){
+    public Cozinha atualizar(@PathVariable Long id, @RequestBody @Valid Cozinha cozinha){
         cozinha.setId(id);
         return cozinhaService.editar(cozinha);
     }

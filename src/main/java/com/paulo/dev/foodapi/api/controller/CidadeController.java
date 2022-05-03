@@ -1,6 +1,5 @@
 package com.paulo.dev.foodapi.api.controller;
 
-import com.paulo.dev.foodapi.domain.exception.EntidadeNaoEncontradaException;
 import com.paulo.dev.foodapi.domain.exception.EstadoNaoEncontradoException;
 import com.paulo.dev.foodapi.domain.exception.NegocioException;
 import com.paulo.dev.foodapi.domain.model.Cidade;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -31,7 +31,7 @@ public class CidadeController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cidade cadastrar(@RequestBody Cidade cidade) {
+    public Cidade cadastrar(@RequestBody @Valid Cidade cidade) {
         try {
             return cidadeService.cadastrar(cidade);
         } catch (EstadoNaoEncontradoException ex) {
@@ -40,7 +40,7 @@ public class CidadeController {
     }
 
     @PutMapping("/{id}")
-    public Cidade editar(@PathVariable("id") Long id, @RequestBody Cidade cidade) {
+    public Cidade editar(@PathVariable("id") Long id, @RequestBody @Valid Cidade cidade) {
         try {
             Cidade cidadeAtual = cidadeService.buscar(id);
             BeanUtils.copyProperties(cidade, cidadeAtual, "id");
