@@ -1,7 +1,8 @@
 package com.paulo.dev.foodapi.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.paulo.dev.foodapi.Groups;
+import com.paulo.dev.foodapi.core.validation.Groups;
+import com.paulo.dev.foodapi.core.validation.TaxaFrete;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
@@ -33,7 +34,7 @@ public class Restaurante {
     private String nome;
 
     @NotNull
-    @PositiveOrZero
+    @TaxaFrete
     @Column(name = "taxa_frete", nullable = false)
     private BigDecimal taxaFrete;
 

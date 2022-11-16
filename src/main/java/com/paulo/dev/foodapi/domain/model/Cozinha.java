@@ -1,7 +1,7 @@
 package com.paulo.dev.foodapi.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.paulo.dev.foodapi.Groups;
+import com.paulo.dev.foodapi.core.validation.Groups;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
