@@ -2,6 +2,7 @@ package com.paulo.dev.foodapi.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.paulo.dev.foodapi.core.validation.Groups;
+import com.paulo.dev.foodapi.core.validation.Multiplo;
 import com.paulo.dev.foodapi.core.validation.TaxaFrete;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,7 +35,7 @@ public class Restaurante {
     private String nome;
 
     @NotNull
-    @TaxaFrete
+    @Multiplo(numero = 5)
     @Column(name = "taxa_frete", nullable = false)
     private BigDecimal taxaFrete;
 
